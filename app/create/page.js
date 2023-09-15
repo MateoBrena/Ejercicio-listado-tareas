@@ -1,20 +1,26 @@
+'use client'
+
 import React from "react";
 import Link from "next/link";
+import { useState } from "react";
 
-export default function Create() {
+export default function CreateTask() {
+    const [title , setTitle] = useState("")
+    const [completed, setCompleted] = useState("true")
+
     return (
-        <div>
-            <h1 className="header"> Acá se pueden crear tareas nuevas</h1>
-            <form className="formulario">
-                <input name="title" placeholder="Introduzca la tarea"></input>
+        <div className="principal-container">
+            <h1 className="header"> Crear nueva tarea</h1>
+            <form>
+                <input name="title" placeholder="Introduzca la tarea" value={title} onChange={e => { setTitle(e.target.value); }}></input>
                 <label htmlFor="completed"> Está completada?</label>
-                <select name="completed" placeholder="Está completada?">
+                <select name="completed" placeholder="Está completada?" value={completed} onChange={e => {setCompleted(e.target.value)}}>
                     <option value="true"> Si </option>
                     <option value="false"> No </option>
                 </select>
                 <button type="submit"> Agregar Tarea</button>
             </form>
-            <Link href="/"> Volver al Inicio</Link>
+            <Link href="/" className="back"> Volver al Inicio</Link>
         </div>
        ) 
 }
